@@ -1,7 +1,13 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy
 
 NULLABLE = {'blank': True, 'null': True}
+
+
+class UserRoles(models.Model):
+    owner = 'owner', gettext_lazy('owner')
+    admin = 'admin', gettext_lazy('admin')
 
 
 class User(AbstractUser):

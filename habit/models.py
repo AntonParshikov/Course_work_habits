@@ -5,7 +5,7 @@ from users.models import NULLABLE, User
 
 
 class Habit(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     place = models.CharField(max_length=255, **NULLABLE, verbose_name='Место')
     time = models.TimeField(verbose_name='Время')
     action = models.CharField(max_length=200, verbose_name='Действие')
