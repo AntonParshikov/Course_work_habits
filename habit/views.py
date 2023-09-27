@@ -4,6 +4,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView,
 from rest_framework.permissions import IsAuthenticated
 
 from habit.models import Habit
+from habit.paginators import HabitPagination
 from habit.serializers import HabitSerializer
 from users.permissions import IsOwner, IsAdmin
 
@@ -11,6 +12,7 @@ from users.permissions import IsOwner, IsAdmin
 class HabitListView(ListAPIView):
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
+    pagination_class = HabitPagination
 
     def get_queryset(self):
         user = self.request.user
@@ -65,3 +67,9 @@ class HabitDeleteView(DestroyAPIView):
             return Habit.objects.all()
         else:
             return Habit.objects.filter(owner=user)
+
+
+class HabitPublicListView(ListAPIView):
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.filter(is_publication=True)
+    pagination_class = HabitPagination

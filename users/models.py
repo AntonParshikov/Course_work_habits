@@ -18,6 +18,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=100, **NULLABLE, verbose_name='Фамилия')
     avatar = models.ImageField(upload_to='users/', **NULLABLE, verbose_name='Аватар')
     comment = models.TextField(**NULLABLE, verbose_name='Описание')
+    tg_chat_id = models.CharField(**NULLABLE, verbose_name='id чата в Telegram')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

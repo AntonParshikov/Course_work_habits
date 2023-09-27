@@ -4,7 +4,7 @@ from users.models import UserRoles
 
 
 class IsAdmin(BasePermission):
-    message = "Вы не являетесь модератором!"
+    message = "Вы не являетесь администратором!"
 
     def has_permission(self, request, view):
         if request.user.role == UserRoles.admin:
