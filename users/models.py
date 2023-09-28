@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy
 NULLABLE = {'blank': True, 'null': True}
 
 
-class UserRoles(models.Model):
+class UserRoles(models.TextChoices):
     owner = 'owner', gettext_lazy('owner')
     admin = 'admin', gettext_lazy('admin')
 
@@ -18,6 +18,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=100, **NULLABLE, verbose_name='Фамилия')
     avatar = models.ImageField(upload_to='users/', **NULLABLE, verbose_name='Аватар')
     comment = models.TextField(**NULLABLE, verbose_name='Описание')
+    tg_chat_id = models.CharField(**NULLABLE, verbose_name='id чата в Telegram')
+    role = models.CharField(max_length=20, **NULLABLE, choices=UserRoles.choices)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
