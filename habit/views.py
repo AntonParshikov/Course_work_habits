@@ -1,8 +1,6 @@
 from django.shortcuts import render
-
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
-
 from habit.models import Habit
 from habit.paginators import HabitPagination
 from habit.serializers import HabitSerializer
